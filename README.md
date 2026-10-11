@@ -53,8 +53,7 @@ Antes de começar, você precisa ter instalado em sua máquina:
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com
-   cd banco-api-performance
+   git clone https://github.com](https://github.com/lellyhs/banco-api-performance
    ```
 
 2. **Execute um cenário de teste específico:**
