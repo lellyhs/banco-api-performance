@@ -66,6 +66,8 @@ Antes de começar, você precisa ter instalado em sua máquina:
 3. **Gerando Relatórios (Dashboard):**
    Caso utilize a extensão de relatórios do K6 para visualizar os dados no navegador de forma gráfica, execute o comando habilitando o web dashboard:
    ```bash
+   K6_WEB_DASHBOARD=true K6_WEB_DASHBOARD_EXPORT=html-report.html k6 run script.js
+   
    Se estiver usando Powershell, digite:
    $env:K6_WEB_DASHBOARD="true"; $env:K6_WEB_DASHBOARD_EXPORT="html-report.html"; k6 run C:\Projetos\banco-api-performance\tests\login.test.js
    ```
