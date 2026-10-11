@@ -1,24 +1,42 @@
 
 import http from 'k6/http';
 import { sleep, check } from 'k6';
+import {pegarBaseUrl} from '../utils/variaveis.js';  
+
+const postLogin = JSON.parse(open('../fixtures/postLogin.json'));
 
 export const options = {
-    //iterations: 10,
+    iterations: 1,
     thresholds: {
         http_req_duration: ['p(90)<3000', 'max<5000'], // 90% das requisições devem ser menores que 3000ms
         http_req_failed: ['rate<0.01'], // Taxa de falha deve ser menor que 1%
     },  
-    vus: 10, // Número de usuários virtuais (VU) que executarão o teste
-    duration: '30s', // Duração total do teste
+    //vus: 10, // Número de usuários virtuais (VU) que executarão o teste
+    //duration: '30s', // Duração total do teste
+    // stages: [
+    //     { duration: '10s', target: 10 }, // Aumenta gradualmente para 10 VUs em 10 segundos
+    //     { duration: '20s', target: 10 }, // Mantém 10 VUs por 20 segundos
+    //     { duration: '10s', target: 30 }, // Aumenta gradualmente para 30 VUs em 10 segundos
+    //     { duration: '10s', target: 0 }, // Mantém 0 VUs por 10 segundos
+    //     { duration: '20s', target: 0 }, // Mantém 0 VUs por 10 segundos
+    // ],
 };
 
 
 export default function () {
-    const url = 'http://localhost:3000/login';
-    const payload = JSON.stringify({
-        "username": "julio.lima",
-        "senha": "123456"
-    });
+    //const url = 'http://localhost:3000/login';
+    //const url = __ENV.BASE_URL + '/login';
+    const url = pegarBaseUrl() + '/login';
+
+    // const payload = JSON.stringify({
+    //     "username": "julio.lima",
+    //     "senha": "123456"
+    // });
+
+    // Se quiser alterar o nome do postLogin só para um caso, fazer aqui: postLogin.username = 'novo_usuario';
+
+    const payload = JSON.stringify(postLogin);
+
 
     const params = {
         headers: {
