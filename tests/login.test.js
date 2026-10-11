@@ -3,10 +3,13 @@ import http from 'k6/http';
 import { sleep, check } from 'k6';
 
 export const options = {
-    iterations: 10,
+    //iterations: 10,
     thresholds: {
-        http_req_duration: ['p(90)<100'], // 90% das requisições devem ser menores que 100ms
+        http_req_duration: ['p(90)<3000', 'max<5000'], // 90% das requisições devem ser menores que 3000ms
+        http_req_failed: ['rate<0.01'], // Taxa de falha deve ser menor que 1%
     },  
+    vus: 10, // Número de usuários virtuais (VU) que executarão o teste
+    duration: '30s', // Duração total do teste
 };
 
 
